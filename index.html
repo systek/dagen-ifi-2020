@@ -138,22 +138,22 @@
 					<section>
 						<h2>Developer satisfaction</h2>
 						<ul>
-								<li>Dataclasses, named and default arguments</li>
-								<li>Collecition api</li>
-								<li>Extension functions</li>
-								<li>null satefy operator</li>
-								<li>when, case on speed</li>
-								<li>Reified types</li>
-								<li>Coroutines</li>
+							<li>Dataclasses, named and default arguments</li>
+							<li>Collecition api</li>
+							<li>Extension functions</li>
+							<li>null satefy operator</li>
+							<li>when, case on speed</li>
+							<li>Reified types</li>
+							<li>Coroutines</li>
 						</ul>
 					</section>
 
 					<section>
 						<h2>Platform satisfaction</h2>
 						<ul>
-								<li>Testing</li>
-								<li>Scripting</li>
-								<li>DSL</li>
+							<li>Testing</li>
+							<li>Scripting</li>
+							<li>DSL</li>
 						</ul>
 					</section>
 				</section>
@@ -161,17 +161,16 @@
 				<section>
 					<section>
 						<h2>Lessons learned</h2>
-						<ul>
-							<li>Kotlin creates great developer satisfaction</li>
-							<li>Features such 	as extension functions and null safety helps us avoid bugs/mistakes</li>
-							<li>Certain libraries, such as okhttp, does not integrate with coroutines</li>
-							<li>Thread.local (used by Spring security) does not work well with coroutines</li>
-							<li>Kotlin gradle, unpredictable syntax, can be slow</li>
-						</ul>
 					</section>
 
 					<section>
-
+						<ul>
+							<li>Kotlin creates great developer satisfaction</li>
+							<li>Features such as extension functions and null safety helps us avoid bugs/mistakes by modifying poor API's</li>
+							<li>Certain libraries do not integrate with coroutines, in not so obvious ways</li>
+							<li>Thread.local (used by Spring security, log4j etc.) does not work well with coroutines</li>
+							<li>Kotlin gradle has unpredictable syntax and can be slow</li>
+						</ul>
 					</section>
 				</section>
 
@@ -185,8 +184,23 @@
 							What are the benefits of this approach?
 						</aside>
 					</section>
-					<section>
 
+					<section>
+						<h2>Standard WebFlux</h2>
+
+						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+                            fun String.toSnakeCase() = this.replace(" ", "_")
+                            "Hello world".toSnakeCase()
+                        </code></pre>
+					</section>
+
+					<section>
+						<h2>Coroutine WebFlux</h2>
+
+						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+                            fun String.toSnakeCase() = this.replace(" ", "_")
+                            "Hello world".toSnakeCase()
+                        </code></pre>
 					</section>
 				</section>
 
