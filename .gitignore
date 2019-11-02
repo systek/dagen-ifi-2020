@@ -97,6 +97,8 @@ modules.xml
 # Icon must end with two \r
 Icon
 
+node_modules/
+
 # Thumbnails
 ._*
 
