@@ -218,15 +218,88 @@
 						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
 							@GetMapping("{id}", produces = [APPLICATION_JSON]
 							fun show(@PathVariable id: String): Mono&lt;Record&gt; = service.show(id)
+
+							@GetMapping(produces = [APPLICATION_JSON]
+							fun index(): Flux&lt;Record&gt; = service.index()
                         </code></pre>
 					</section>
 
 					<section>
-						<h2>Coroutine WebFlux</h2>
+						<h3>WebFlux - Entrypoint w. Coroutines</h3>
+
+						<p>Type or Flow returned from endpoint</p>
 
 						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-                            fun String.toSnakeCase() = this.replace(" ", "_")
-                            "Hello world".toSnakeCase()
+							@GetMapping("{id}", produces = [APPLICATION_JSON]
+							suspend fun show(@PathVariable id: String): Record = service.show(id)
+
+							@GetMapping(produces = [APPLICATION_JSON]
+							suspend fun index(): Flow&lt;Record&gt; = service.index()
+                        </code></pre>
+					</section>
+
+					<section>
+						<h2>WebFlux - Integration</h2>
+
+						<p style="font-size: 30px;">Many libs lack coroutine support, like template with @Repository</p>
+						<p style="font-size: 30px;">Await mono in suspended coroutine, non-blocking</p>
+
+						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+							fun show(id: String): Record = repository.show(id).awaitSingleOrNull()
+							fun index(id: String): Flow&lt;Record&gt; = repository.index().asFlow()
+                        </code></pre>
+					</section>
+
+					<section>
+						<h2>WebFlux - WebClient</h2>
+
+						<p>Reactive client alternative to RestTemplate</p>
+
+						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+							val post: Mono&lt;Post&gt; = webClient
+								.get()
+								.uri("posts/{id}", id)
+								.retrieve()
+								.bodyToMono(Post.class)
+                        </code></pre>
+
+						<p>Add .block() to retreive body synchronously</p>
+
+						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+							val post: Post = webClient
+								.get()
+								.uri("posts/{id}", id)
+								.retrieve()
+								.bodyToMono(Post.class)
+								.block()
+                        </code></pre>
+					</section>
+
+					<section>
+						<h3>WebFlux - WebClient w. Coroutines</h3>
+
+						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+							val post: Post = webClient
+								.get()
+								.uri("posts/{id}", id)
+								.awaitExchange()
+								.awaitBody()
+                        </code></pre>
+
+						<p>Benefits of .block() while retaining asynchronicity</p>
+					</section>
+
+					<section>
+						<h3>WebFlux - WebClient w. Coroutines</h3>
+
+						<p>Flow maps directly</p>
+
+						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+							val post: Flow&lt;Post&gt; = webClient
+								.get()
+								.uri("posts/{id}", id)
+								.awaitExchange()
+								.bodyToFlow()
                         </code></pre>
 					</section>
 				</section>
