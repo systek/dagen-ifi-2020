@@ -186,11 +186,27 @@
 					</section>
 
 					<section>
+						<h2>What is Webflux?</h2>
+
+						<ul>
+							<li>Reactive programming for spring-boot</li>
+							<li>Data as two primary types of subscribable data</li>
+						</ul>
+					</section>
+
+					<section>
 						<h2>Standard WebFlux</h2>
 
+						<ul>
+							<li>Mono -> Represents a singular item</li>
+							<li>Flux -> Represents a variable sized number of items</li>
+							<li>Accessed through asynchronous subscription</li>
+						</ul>
+
 						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-                            fun String.toSnakeCase() = this.replace(" ", "_")
-                            "Hello world".toSnakeCase()
+							repository.getById("1").subscribe {} // Mono
+							repository.getAll().subscribe {} // Flux (Subscribe on each element)
+							repository.getAll().collectList().subscribe {} // Flux (Mono of all elements)
                         </code></pre>
 					</section>
 
