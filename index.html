@@ -236,10 +236,10 @@
 						<p>Mono returned from endpoint</p>
 
 						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-							@GetMapping("{id}", produces = [APPLICATION_JSON]
+							@GetMapping("{id}", produces = [APPLICATION_JSON])
 							fun show(@PathVariable id: String): Mono&lt;Record&gt; = service.show(id)
 
-							@GetMapping(produces = [APPLICATION_JSON]
+							@GetMapping(produces = [APPLICATION_JSON])
 							fun index(): Flux&lt;Record&gt; = service.index()
                         </code></pre>
 					</section>
@@ -250,10 +250,10 @@
 						<p>Type or Flow returned from endpoint</p>
 
 						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-							@GetMapping("{id}", produces = [APPLICATION_JSON]
+							@GetMapping("{id}", produces = [APPLICATION_JSON])
 							suspend fun show(@PathVariable id: String): Record = service.show(id)
 
-							@GetMapping(produces = [APPLICATION_JSON]
+							@GetMapping(produces = [APPLICATION_JSON])
 							suspend fun index(): Flow&lt;Record&gt; = service.index()
                         </code></pre>
 					</section>
