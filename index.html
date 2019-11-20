@@ -347,14 +347,59 @@
 					</section>
 
 					<section>
-						<h2>Tax Process</h2>
+						<h2>Test data generation DSL</h2>
 						<ul>
-							<li>Control setters are provided an overview that is 100% correct in terms of the controls that are executed within the system</li>
-							<li>Should be detailed to fully understand the controls and their functions</li>
-							<li>Control setters are able to write and test new controls</li>
-							<li>There are about 500-1000 controls that will be created and maintained. It is important that the process is effective</li>
+							<li>Domain experts can easily produce rich test data</li>
+							<li>Easily accessible for non-technical domain experts in the NTA</li>
+							<ul>
+								<li>Used from the browser</li>
+							</ul>
 						</ul>
 					</section>
+
+					<section>
+						<h2>Kotlin playground</h2>
+						<ul>
+							<li><a href="https://play.kotlinlang.org/">https://play.kotlinlang.org/</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Kotlin playground</h2>
+						<ul>
+							<li>Created a fork of the kotlin playground repo</li>
+							<li>Made it possible to run within the internal infrastructure</li>
+							<li>Customized the front-end to the NTA requirements</li>
+						</ul>
+					</section>
+
+					<section>
+						<img src="images/playground-spesifikasjon.png" />
+					</section>
+
+					<section>
+						<img src="images/playground-auto-complete.png" />
+					</section>
+
+					<section>
+						<h2>Tax Process</h2>
+						<ul>
+							<li>Domain experts are shown examples of rules currently implemented</li>
+							<li>This overview provides details so the domain experts can understand the DSL</li>
+							<li>Domain experts are non-technical, and are able to create and test new rules</li>
+							<li>This learning process must be effective, because there are around 500-1000 rules in total</li>
+						</ul>
+					</section>
+
+					<section>
+							<h2>What are rules?</h2>
+							<ul>
+								<li>If there is a deviation</li>
+								<li>Size of the deviation</li>
+								<li>Strategies to handle the cases and self service</li>
+								<li>The fields in the tax report that are involved in the rule</li>
+							</ul>
+						</section>
 
 					<section>
 						<h2>Internal vs external DSL</h2>
@@ -365,20 +410,22 @@
 							</tr>
 							<tr>
 								<td>Develop a parser that interprets the language</td>
-								<td>No need for a custom parser</td>
+								<td>NA</td>
 							</tr>
 							<tr>
 								<td>Create an editor for the language</td>
-								<td>No need for a custom editor</td>
+								<td>NA (one IDEA to rule them all)</td>
 							</tr>
 							<tr>
 								<td>Have to create our own tools</td>
-								<td>Can use existing tools, such as intellij</td>
+								<td>Can use existing tools</td>
 							</tr>
 						</table>
 
 						<aside class="notes">
 							- Describe internal and external dsl
+							- Internal DSL: a particular form of API in the host general purpose language, fluent interface
+							- External DSL: is parsed independently of the host general purpose language
 						</aside>
 					</section>
 
@@ -390,14 +437,6 @@
 						<img src="images/tax-process-example.png" />
 					</section>
 
-					<section>
-						<ul>
-							<li>If there is a deviation</li>
-							<li>Size of the deviation</li>
-							<li>Strategies to handle the cases and self service</li>
-							<li>The fields in the tax report that are involved in the control</li>
-						</ul>
-					</section>
 				</section>
 			</div>
 		</div>
