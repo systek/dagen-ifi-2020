@@ -93,6 +93,10 @@
 							<li>Yearly collection: 1361.1 billion NOK (2018)</li>
 							<li>Percentage of tax returns with no missing info or techinal error: 98.5%</li>
 						</ul>
+
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 
 					<section>
@@ -105,6 +109,9 @@
 							<li>~500 microservices in production for main services</li>
 							<li>Deploys so far this year: 139 659 (September)</li>
 						</ul>
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 
 					<section>
@@ -114,6 +121,9 @@
 							<li>Integrations with most other public services</li>
 							<li>Integration with any company interfacing with the national registry</li>
 						</ul>
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 				</section>
 
@@ -126,12 +136,18 @@
 						<br />
 
 						<h6>https://skatteetaten.github.io/aurora/</h6>
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 
 					<section>
 						<h2>Aurora github io</h2>
 
 						<h6>INSERT THINGS</h6>
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 
 					<section>
@@ -143,6 +159,9 @@
 							<li>Services named after characters from Fraggle Rock</li>
 							<li>Built with Kotlin and kotlin-gradle</li>
 						</ul>
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 				</section>
 
@@ -153,6 +172,9 @@
 						<aside class="notes">
 							100% compatibility with Java code.
 							Easy to adopt, lots of existing libraries that can be used.
+						</aside>
+						<aside class="notes">
+							Jarle
 						</aside>
 					</section>
 
@@ -167,6 +189,9 @@
 							<li>Reified types</li>
 							<li>Coroutines</li>
 						</ul>
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 
 					<section>
@@ -176,6 +201,9 @@
 							<li>Scripting</li>
 							<li>DSL</li>
 						</ul>
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 				</section>
 
@@ -192,16 +220,25 @@
 							<li>Thread.local (used by Spring security, log4j etc.) does not work well with coroutines</li>
 							<li>Kotlin gradle has unpredictable syntax and can be slow</li>
 						</ul>
+						<aside class="notes">
+							Anders
+						</aside>
 					</section>
 				</section>
 
 				<section>
 					<section>
 						<h2>Storyteller</h2>
+						<aside class="notes">
+								Anders
+							</aside>
 					</section>
 
 					<section>
 						<h2>Kotlin and Spring-Boot</h2>
+						<aside class="notes">
+								Anders
+							</aside>
 					</section>
 				</section>
 
@@ -210,6 +247,7 @@
 						<h2>Coroutines and WebFlux</h2>
 
 						<aside class="notes">
+							Anders
 							Spring webflux (spring boot 2.2) introduced support for coroutines.
 							Show example from Storyteller on how we use coroutines in combination with webflux.
 							What are the benefits of this approach?
@@ -223,6 +261,9 @@
 							<li>Reactive programming for spring-boot</li>
 							<li>Data as two primary types of subscribable data</li>
 						</ul>
+						<aside class="notes">
+								Anders
+							</aside>
 					</section>
 
 					<section>
@@ -238,7 +279,10 @@
 							repository.getById("1").subscribe {} // Mono
 							repository.getAll().subscribe {} // Flux (Subscribe on each element)
 							repository.getAll().collectList().subscribe {} // Flux (Mono of all elements)
-                        </code></pre>
+						</code></pre>
+						<aside class="notes">
+								Anders
+							</aside>
 					</section>
 
 					<section>
@@ -252,7 +296,10 @@
 
 							@GetMapping(produces = [APPLICATION_JSON])
 							fun index(): Flux&lt;Record&gt; = service.index()
-                        </code></pre>
+						</code></pre>
+						<aside class="notes">
+								Anders
+							</aside>
 					</section>
 
 					<section>
@@ -266,7 +313,10 @@
 
 							@GetMapping(produces = [APPLICATION_JSON])
 							suspend fun index(): Flow&lt;Record&gt; = service.index()
-                        </code></pre>
+						</code></pre>
+						<aside class="notes">
+								Anders
+						</aside>
 					</section>
 
 					<section>
@@ -278,7 +328,10 @@
 						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
 							fun show(id: String): Record = repository.show(id).awaitSingleOrNull()
 							fun index(id: String): Flow&lt;Record&gt; = repository.index().asFlow()
-                        </code></pre>
+						</code></pre>
+						<aside class="notes">
+								Anders
+						</aside>
 					</section>
 
 					<section>
@@ -303,7 +356,10 @@
 								.retrieve()
 								.bodyToMono(Post.class)
 								.block()
-                        </code></pre>
+						</code></pre>
+						<aside class="notes">
+								Anders
+							</aside>
 					</section>
 
 					<section>
@@ -318,6 +374,9 @@
                         </code></pre>
 
 						<p>Benefits of .block() while retaining asynchronicity</p>
+						<aside class="notes">
+								Anders
+						</aside>
 					</section>
 
 					<section>
@@ -331,13 +390,19 @@
 								.uri("posts/{id}", id)
 								.awaitExchange()
 								.bodyToFlow()
-                        </code></pre>
+						</code></pre>
+						<aside class="notes">
+								Anders
+						</aside>
 					</section>
 				</section>
 
 				<section>
 					<section>
 						<p style="font-size:1.6em;">DSLs IN THE NTA</p>
+						<aside class="notes">
+								Jarle
+						</aside>
 					</section>
 					
 					<section>
@@ -351,6 +416,7 @@
 						</ul>
 
 						<aside class="notes">
+							Jarle
 							- Why was Kotlin used to define the DSL
 							- Demo of playground
 							- Show an example of DSL
@@ -366,6 +432,9 @@
 								<li>Used from the browser</li>
 							</ul>
 						</ul>
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 
 					<section>
@@ -373,6 +442,9 @@
 						<ul>
 							<li><a href="https://play.kotlinlang.org/">https://play.kotlinlang.org/</a></li>
 						</ul>
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 
 					<section>
@@ -382,6 +454,9 @@
 							<li>Made it possible to run within the internal infrastructure</li>
 							<li>Customized the front-end to the NTA requirements</li>
 						</ul>
+						<aside class="notes">
+							Jarle
+					</aside>
 					</section>
 
 					<section>
@@ -390,14 +465,23 @@
 							<li>JS manages the UI</li>
 							<li>Auto complete is provided by the Kotlin server</li>
 						</ul>
+						<aside class="notes">
+							Jarle
+						</aside>
 					</section>
 
 					<section>
 						<img src="images/playground-spesifikasjon.png" />
+						<aside class="notes">
+								Jarle
+						</aside>
 					</section>
 
 					<section>
 						<img src="images/playground-auto-complete.png" />
+						<aside class="notes">
+								Jarle
+						</aside>
 					</section>
 
 					<section>
@@ -405,8 +489,11 @@
 						<ul>
 							<li>Syntactic sugar, creates a natural language in the DSL</li>
 							<li>Easy to integrate into exsiting legacy Java applications</li>
-							<li>Auto complete, syntax highlighting out-of-the-box with playground</li>
+							<li>Auto complete and syntax highlighting out-of-the-box with playground</li>
 						</ul>
+						<aside class="notes">
+								Jarle
+						</aside>
 					</section>
 
 					<section>
@@ -415,64 +502,81 @@
 							<li>Kotlin-server (playground backend repo) is a large application making it hard to isolate logic and make necessary changes</li>
 							<li>Multiple challenges in adapting for deployment into the internal infrastructure</li>
 						</ul>
-					</section>
-
-					<section>
-						<h2>Tax Process</h2>
-						<ul>
-							<li>Domain experts are shown examples of rules currently implemented</li>
-							<li>This overview provides details so the domain experts can understand the DSL</li>
-							<li>Domain experts are non-technical, and are able to create and test new rules</li>
-							<li>This learning process must be effective, because there are around 500-1000 rules in total</li>
-						</ul>
-					</section>
-
-					<section>
-							<h2>What are rules?</h2>
-							<ul>
-								<li>If there is a deviation</li>
-								<li>Size of the deviation</li>
-								<li>Strategies to handle the cases and self service</li>
-								<li>The fields in the tax report that are involved in the rule</li>
-							</ul>
-						</section>
-
-					<section>
-						<h2>Internal vs external DSL</h2>
-						<table>
-							<tr>
-								<th>External</th>
-								<th>Internal</th>
-							</tr>
-							<tr>
-								<td>Develop a parser that interprets the language</td>
-								<td>NA</td>
-							</tr>
-							<tr>
-								<td>Create an editor for the language</td>
-								<td>NA (one IDEA to rule them all)</td>
-							</tr>
-							<tr>
-								<td>Have to create our own tools</td>
-								<td>Can use existing tools</td>
-							</tr>
-						</table>
-
 						<aside class="notes">
-							- Describe internal and external dsl
-							- Internal DSL: a particular form of API in the host general purpose language, fluent interface
-							- External DSL: is parsed independently of the host general purpose language
+								Jarle
 						</aside>
 					</section>
+				</section>
 
-					<section>
-						<img src="images/tax-process-screenshot.png" />
-					</section>
-
-					<section>
-						<img src="images/tax-process-example.png" />
-					</section>
-
+				<section>
+						<section>
+								<h2>Tax Process</h2>
+								<ul>
+									<li>Domain experts are shown examples of rules currently implemented</li>
+									<li>This overview provides details so the domain experts can understand the DSL</li>
+									<li>Domain experts are non-technical, and are able to create and test new rules</li>
+									<li>This learning process must be effective, because there are around 500-1000 rules in total</li>
+								</ul>
+								<aside class="notes">
+									Anders
+								</aside>
+							</section>
+		
+							<section>
+									<h2>What are rules?</h2>
+									<ul>
+										<li>If there is a deviation</li>
+										<li>Size of the deviation</li>
+										<li>Strategies to handle the cases and self service</li>
+										<li>The fields in the tax report that are involved in the rule</li>
+									</ul>
+									<aside class="notes">
+											Anders
+									</aside>
+								</section>
+		
+							<section>
+								<h2>Internal vs external DSL</h2>
+								<table>
+									<tr>
+										<th>External</th>
+										<th>Internal</th>
+									</tr>
+									<tr>
+										<td>Develop a parser that interprets the language</td>
+										<td>NA</td>
+									</tr>
+									<tr>
+										<td>Create an editor for the language</td>
+										<td>NA (one IDEA to rule them all)</td>
+									</tr>
+									<tr>
+										<td>Have to create our own tools</td>
+										<td>Can use existing tools</td>
+									</tr>
+								</table>
+		
+								<aside class="notes">
+									Anders
+									- Describe internal and external dsl
+									- Internal DSL: a particular form of API in the host general purpose language, fluent interface
+									- External DSL: is parsed independently of the host general purpose language
+								</aside>
+							</section>
+		
+							<section>
+								<img src="images/tax-process-screenshot.png" />
+								<aside class="notes">
+										Anders
+								</aside>
+							</section>
+		
+							<section>
+								<img src="images/tax-process-example.png" />
+								<aside class="notes">
+										Anders
+								</aside>
+							</section>
 				</section>
 			</div>
 		</div>
