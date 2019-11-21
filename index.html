@@ -273,6 +273,27 @@
             <ul>
               <li>Microservices</li>
               <li>Event-Driven</li>
+            </ul>
+
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+
+          <section>
+            <h2>Architecture</h2>
+
+            <img src="images/bonehead_oversikt.png"  height="550" width="450">
+
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+
+          <section>
+            <h2>Tech</h2>
+
+            <ul>
               <li>Kotlin</li>
               <li>Spring-Boot</li>
               <li>Vert.x</li>
@@ -281,16 +302,168 @@
 
             <aside class="notes">
               Anders
+
+              Will primarily look at Kotlin and Spring-Boot and Kotlin-gradle and how it enables productivity
+            </aside>
+          </section>
+				</section>
+
+        <section>
+          <section>
+            <h2>Kotlin and Spring-Boot</h2>
+            <aside class="notes">
+              Anders
             </aside>
           </section>
 
-					<section>
-						<h2>Kotlin and Spring-Boot</h2>
-						<aside class="notes">
-								Anders
-							</aside>
-					</section>
-				</section>
+          <section>
+            <h2>General experience</h2>
+
+            <ul>
+              <li>Most functionality like expected right out the box</li>
+              <li>v2.2.0 solved several issues with coroutines, not all</li>
+            </ul>
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+
+          <section>
+            <h2>General annoyance</h2>
+
+            <p>Java</p>
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+							@Value("${test.prop}")
+						</code></pre>
+
+            <p>Kotlin</p>
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+							@Value("\${test.prop}")
+						</code></pre>
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+
+          <section>
+            <h2>General annoyance</h2>
+
+            <p>Java</p>
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+              @Value("${test.prop}")
+              private String someString:
+						</code></pre>
+
+            <p>Kotlin</p>
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+              @Value("\${test.prop}")
+              val someString: String? = null
+						</code></pre>
+
+            <p>Kotlin - Alternative</p>
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+              @Value("\${test.prop}")
+              lateinit var someString: String // creates nullability issues
+
+              @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
+              lateinit var port: Integer
+              // injected with @ConfigurationProperties - cannot ? a primitive
+						</code></pre>
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+
+          <section>
+            <h2>General annoyance</h2>
+
+            <p>Java</p>
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+              @Autowired
+              private SomeService someService;
+						</code></pre>
+
+            <p>Java - Constructor</p>
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+              (SomeService someService)
+						</code></pre>
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+
+          <section>
+            <h2>General annoyance</h2>
+
+            <p>Kotlin</p>
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+              @Autowired
+              private val someService: SomeService? = null // creates nullability issues
+						</code></pre>
+
+            <p>Kotlin - Alternative</p>
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+              @Autowired
+              private lateinit var someService: SomeService
+						</code></pre>
+
+            <p>Kotlin - Constructor</p>
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+              (private val someService: SomeService) // property
+              (someService: SomeService) // argument
+						</code></pre>
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+
+          <section>
+            <h2>General Annoyance</h2>
+
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+            // Spring fox not enabled for suspended functions
+            // @Configuration
+            // @EnableSwagger2
+            // @Import(BeanValidatorPluginsConfiguration::class)
+						</code></pre>
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+
+          <section>
+            <h2>Complicated annoyance</h2>
+
+            <ul>
+              <li>@PreAuthorize is often used for authorizing based on granted authorities</li>
+              <li>@EnableGlobalMethodSecurity
+                <ul>
+                  <li>Not usable with suspend function (general issue with web-mvc)</li>
+                </ul>
+              </li>
+              <li>@EnableReactiveMethodSecurity
+                <ul>
+                  <li>Webflux variant, works with suspend</li>
+                  <li>...but demands Mono or Flux response which webflux does not support for suspend function</li>
+                </ul>
+            </ul>
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+
+          <section>
+            <h2>Complicated annoyance</h2>
+
+            <p>TLDR - Forget @PreAuthorize for suspended flows, for now :)</p>
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+          <aside class="notes">
+            Anders
+          </aside>
+        </section>
 
 				<section>
 					<section>
@@ -340,9 +513,12 @@
 
 						<p>Mono returned from endpoint</p>
 
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+						<pre><code class="kotlin" data-trim contenteditable style="font-size: 16px;">
 							@GetMapping("{id}", produces = [APPLICATION_JSON])
 							fun show(@PathVariable id: String): Mono&lt;Record&gt; = service.show(id)
+
+							@PostMapping(consumers = [APPLICATION_JSON], produces = [APPLICATION_JSON])
+							fun create(@Valid @RequestBody record: Record): Mono&lt;Record&gt; = service.create(record)
 
 							@GetMapping(produces = [APPLICATION_JSON])
 							fun index(): Flux&lt;Record&gt; = service.index()
@@ -357,9 +533,12 @@
 
 						<p>Type or Flow returned from endpoint</p>
 
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+						<pre><code class="kotlin" data-trim contenteditable style="font-size: 16px;">
 							@GetMapping("{id}", produces = [APPLICATION_JSON])
-							suspend fun show(@PathVariable id: String): Record = service.show(id)
+							suspend fun show(@PathVariable id: String): Record? = service.show(id)
+
+							@PostMapping(consumers = [APPLICATION_JSON], produces = [APPLICATION_JSON])
+							suspend fun create(@Valid @RequestBody record: Record): Record = service.create(record)
 
 							@GetMapping(produces = [APPLICATION_JSON])
 							suspend fun index(): Flow&lt;Record&gt; = service.index()
@@ -376,7 +555,8 @@
 						<p style="font-size: 30px;">Await mono in suspended coroutine, non-blocking</p>
 
 						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-							fun show(id: String): Record = repository.show(id).awaitSingleOrNull()
+							fun show(id: String): Record? = repository.show(id).awaitSingleOrNull()
+							fun create(record: Record): Record = repository.create(record).awaitSingle()
 							fun index(id: String): Flow&lt;Record&gt; = repository.index().asFlow()
 						</code></pre>
 						<aside class="notes">
@@ -445,7 +625,38 @@
 								Anders
 						</aside>
 					</section>
+
+          <section>
+            <h2>Kotlin + Spring-Boot</h2>
+
+            <ul>
+              <li>Large Spring codebase reliant on web-mvc
+                <ul>
+                  <li>Think twice before refactor</li>
+                </ul>
+              </li>
+              <li>Any webflux variant
+                <ul>
+                  <li>Great gains in readability and concurrency through use of coroutines</li>
+                  <li>Still issues with spring secuirty and many web-mvc based libs</li>
+                </ul>
+              </li>
+            </ul>
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
 				</section>
+
+        <section>
+          <section>
+            <h2>Kotlin-gradle</h2>
+
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+        </section>
 
 				<section>
 					<section>
@@ -477,10 +688,11 @@
 						<h2>Test data generation DSL</h2>
 						<ul>
 							<li>Domain experts can easily produce rich test data</li>
-							<li>Easily accessible for non-technical domain experts in the NTA</li>
-							<ul>
-								<li>Used from the browser</li>
-							</ul>
+							<li>Easily accessible for non-technical domain experts in the NTA
+                <ul>
+                  <li>Used from the browser</li>
+                </ul>
+              </li>
 						</ul>
 						<aside class="notes">
 							Jarle
@@ -559,74 +771,74 @@
 				</section>
 
 				<section>
-						<section>
-								<h2>Tax Process</h2>
-								<ul>
-									<li>Domain experts are shown examples of rules currently implemented</li>
-									<li>This overview provides details so the domain experts can understand the DSL</li>
-									<li>Domain experts are non-technical, and are able to create and test new rules</li>
-									<li>This learning process must be effective, because there are around 500-1000 rules in total</li>
-								</ul>
-								<aside class="notes">
-									Anders
-								</aside>
-							</section>
-		
-							<section>
-									<h2>What are rules?</h2>
-									<ul>
-										<li>If there is a deviation</li>
-										<li>Size of the deviation</li>
-										<li>Strategies to handle the cases and self service</li>
-										<li>The fields in the tax report that are involved in the rule</li>
-									</ul>
-									<aside class="notes">
-											Anders
-									</aside>
-								</section>
-		
-							<section>
-								<h2>Internal vs external DSL</h2>
-								<table>
-									<tr>
-										<th>External</th>
-										<th>Internal</th>
-									</tr>
-									<tr>
-										<td>Develop a parser that interprets the language</td>
-										<td>NA</td>
-									</tr>
-									<tr>
-										<td>Create an editor for the language</td>
-										<td>NA (one IDEA to rule them all)</td>
-									</tr>
-									<tr>
-										<td>Have to create our own tools</td>
-										<td>Can use existing tools</td>
-									</tr>
-								</table>
-		
-								<aside class="notes">
-									Anders
-									- Describe internal and external dsl
-									- Internal DSL: a particular form of API in the host general purpose language, fluent interface
-									- External DSL: is parsed independently of the host general purpose language
-								</aside>
-							</section>
-		
-							<section>
-								<img src="images/tax-process-screenshot.png" />
-								<aside class="notes">
-										Anders
-								</aside>
-							</section>
-		
-							<section>
-								<img src="images/tax-process-example.png" />
-								<aside class="notes">
-										Anders
-								</aside>
-							</section>
+          <section>
+              <h2>Tax Process</h2>
+              <ul>
+                <li>Domain experts are shown examples of rules currently implemented</li>
+                <li>This overview provides details so the domain experts can understand the DSL</li>
+                <li>Domain experts are non-technical, and are able to create and test new rules</li>
+                <li>This learning process must be effective, because there are around 500-1000 rules in total</li>
+              </ul>
+              <aside class="notes">
+                Anders
+              </aside>
+            </section>
+
+            <section>
+                <h2>What are rules?</h2>
+                <ul>
+                  <li>If there is a deviation</li>
+                  <li>Size of the deviation</li>
+                  <li>Strategies to handle the cases and self service</li>
+                  <li>The fields in the tax report that are involved in the rule</li>
+                </ul>
+                <aside class="notes">
+                    Anders
+                </aside>
+              </section>
+
+            <section>
+              <h2>Internal vs external DSL</h2>
+              <table>
+                <tr>
+                  <th>External</th>
+                  <th>Internal</th>
+                </tr>
+                <tr>
+                  <td>Develop a parser that interprets the language</td>
+                  <td>NA</td>
+                </tr>
+                <tr>
+                  <td>Create an editor for the language</td>
+                  <td>NA (one IDEA to rule them all)</td>
+                </tr>
+                <tr>
+                  <td>Have to create our own tools</td>
+                  <td>Can use existing tools</td>
+                </tr>
+              </table>
+
+              <aside class="notes">
+                Anders
+                - Describe internal and external dsl
+                - Internal DSL: a particular form of API in the host general purpose language, fluent interface
+                - External DSL: is parsed independently of the host general purpose language
+              </aside>
+            </section>
+
+            <section>
+              <img src="images/tax-process-screenshot.png" />
+              <aside class="notes">
+                  Anders
+              </aside>
+            </section>
+
+            <section>
+              <img src="images/tax-process-example.png" />
+              <aside class="notes">
+                  Anders
+              </aside>
+            </section>
 				</section>
 			</div>
 		</div>
