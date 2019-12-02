@@ -674,6 +674,29 @@
 						</aside>
 					</section>
 
+          <section>
+            <h3>WebFlux - Why Choose?</h3>
+
+            <pre><code class="kotlin" data-trim contenteditable style="font-size: 15px;">
+              val post: Post = webClient
+                .put()
+                .uri { it.path("$BASE_PATH/{id}").build(id) }
+                .bodyValue(encode(envConfig))
+                .exchange()
+                .retryBackoff(5, ofMillis(5000))
+                .awaitFirst()
+                .let {
+                  when {
+                    it.statusCode().is2xxSuccessful -> it.awaitBody()
+                    else -> throw ResponseStatusException(it.statusCode(), it.statusCode().reasonPhrase)
+                  }
+                }
+						</code></pre>
+            <aside class="notes">
+              Anders
+            </aside>
+          </section>
+
 					<section>
 						<h2>Kotlin + Spring-Boot</h2>
 
