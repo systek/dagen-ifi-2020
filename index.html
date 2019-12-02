@@ -680,15 +680,84 @@
 					</section>
 				</section>
 
-		       <section>
-		         	<section>
-		           		<h2>Kotlin-gradle</h2>
+       <section>
+          <section>
+            <h2>Kotlin-gradle</h2>
 
-		            	<aside class="notes">
-		             		 Anders
-		            	</aside>
-		          	</section>
-		        </section>
+            <aside class="notes">
+               Anders
+            </aside>
+          </section>
+
+         <section>
+           <h2>Kotlin-gradle Cons</h2>
+
+           <ul>
+             <li>Resource intensive - not entirely clear why</li>
+             <li>Unpredictable syntax when using plugins</li>
+           </ul>
+
+           <aside class="notes">
+             Anders
+           </aside>
+         </section>
+
+         <section>
+           <h2>Kotlin-gradle Syntax</h2>
+
+           <pre><code class="kotlin" data-trim contenteditable style="font-size: 16px;">
+            swaggerSources {
+              create("segments").apply {
+                setInputFile(file("src/main/resources/swagger/storyteller_segments_openapi.json"))
+
+                code(closureOf&lt;GenerateSwaggerCode&gt; {
+                  language = "kotlin-spring"
+                  configFile = file("src/main/resources/swagger/config_segments.json")
+                })
+              }
+            }
+          </code></pre>
+
+           <aside class="notes">
+             Anders
+           </aside>
+         </section>
+
+         <section>
+           <h2>Gradle Syntax</h2>
+
+           <pre><code class="kotlin" data-trim contenteditable style="font-size: 16px;">
+             swaggerSources {
+               petstore {
+                 inputFile = file('src/main/resources/swagger/storyteller_segments_openapi.json')
+
+                 code {
+                   language = 'kotlin-spring'
+                   configFile = 'src/main/resources/swagger/config_segments.json'
+                 }
+               }
+             }
+						</code></pre>
+
+           <aside class="notes">
+             Anders
+           </aside>
+         </section>
+
+         <section>
+           <h2>Kotlin-gradle pros</h2>
+
+           <ul>
+             <li>Don't need Groovy, same language as application</li>
+             <li>Code completion, works wonders with buildSrc</li>
+             <li>Incremental building and caching increases build speed</li>
+           </ul>
+
+           <aside class="notes">
+             Anders
+           </aside>
+         </section>
+        </section>
 
 				<section>
 					<section>
