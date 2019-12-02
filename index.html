@@ -39,7 +39,7 @@
 						<li>Lessons learned</li>
 						<li>Storyteller</li>
 						<li>Coroutines and WebFlux</li>
-						<li>DSLs in the NTA</li>
+						<li>DSLs</li>
 					</ul>
 				</section>
 
@@ -55,7 +55,7 @@
 								<li>Consultancy based in Oslo</li>
 								<li>About 60 employees</li>
 							</ul>
-							<li>Consultant at the Norwegian Tax Administration</li>
+							<li>Consultant at the Norwegian Tax Administration (NTA)</li>
 							<li>Organizers of the Oslo Kotlin Meetup</li>
 						</ul>
 					</section>
@@ -95,7 +95,7 @@
 
 				<section>
 					<section>
-						<h2>Norwegian Tax Administration (NTA)</h2>
+						<h2>Norwegian Tax Administration</h2>
 						<ul>
 							<li>~6500 employees</li>
 							<li>Tax calculation and enforcement</li>
@@ -134,9 +134,13 @@
 					</section>
 
 					<section>
-						<h2>Aurora github io</h2>
-						
-						<img src="images/aurora-platform.png" />
+						<h2>PaaS</h2>
+
+						<ul>
+							<li>Based on OpenShift</li>
+							<li>Custom configuration and tooling</li>
+							<li>Built with Kotlin and kotlin-gradle</li>
+						</ul>
 						<aside class="notes">
 							Jarle
 						</aside>
@@ -146,11 +150,19 @@
 						<h2>PaaS</h2>
 
 						<ul>
-							<li>Based on OpenShift</li>
-							<li>Custom configuration and tooling</li>
 							<li>Services named after characters from Fraggle Rock</li>
-							<li>Built with Kotlin and kotlin-gradle</li>
 						</ul>
+						
+
+						<aside class="notes">
+							Jarle
+						</aside>
+					</section>
+
+					<section>
+						<h2>Aurora github io</h2>
+						
+						<img src="images/aurora-platform.png" />
 						<aside class="notes">
 							Jarle
 						</aside>
@@ -160,9 +172,16 @@
 						<h3>Custom config</h3>
 						<img src="images/aurora-config.png" width="70%" />
 					</section>
+
 					<section>
 						<h3>Custom config</h3>
 						<img src="images/aurora-config2.png" width="70%" />
+					</section>
+
+					<section>
+						<h2>Open source</h2>
+						<a href="https://github.com/Skatteetaten">https://github.com/Skatteetaten</a>
+						<img src="images/github-skatteetaten.png" width="70%" />
 					</section>
 				</section>
 
@@ -196,11 +215,30 @@
 					</section>
 
 					<section>
-						<h2>Platform satisfaction</h2>
+						<h2>NTA satisfaction</h2>
 						<ul>
 							<li>Testing</li>
 							<li>Scripting</li>
 							<li>DSL</li>
+						</ul>
+						<aside class="notes">
+							Jarle
+							<ul>
+								<li>Keep existing tests</li>
+								<li>Broad support for scripting (build scripts, kotlin script)</li>
+								<li>Many use cases favored DSL type solution, well supported in Kotlin</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section>
+							<h2>Lessons learned</h2>
+						<ul>
+							<li>Kotlin creates great developer satisfaction</li>
+							<li>Features such as extension functions and null safety helps us avoid bugs/mistakes by modifying poor API's</li>
+							<li>Certain libraries do not integrate with coroutines, in not so obvious ways</li>
+							<li>Thread.local (used by Spring security, log4j etc.) does not work well with coroutines</li>
+							<li>Kotlin gradle has unpredictable syntax and can be slow</li>
 						</ul>
 						<aside class="notes">
 							Jarle
@@ -210,30 +248,11 @@
 
 				<section>
 					<section>
-						<h2>Lessons learned</h2>
-					</section>
-
-					<section>
-						<ul>
-							<li>Kotlin creates great developer satisfaction</li>
-							<li>Features such as extension functions and null safety helps us avoid bugs/mistakes by modifying poor API's</li>
-							<li>Certain libraries do not integrate with coroutines, in not so obvious ways</li>
-							<li>Thread.local (used by Spring security, log4j etc.) does not work well with coroutines</li>
-							<li>Kotlin gradle has unpredictable syntax and can be slow</li>
-						</ul>
-						<aside class="notes">
-							Anders
-						</aside>
-					</section>
-				</section>
-
-				<section>
-					<section>
 						<h2>Storyteller</h2>
 
 						<aside class="notes">
-								Anders
-							</aside>
+							Anders
+						</aside>
 					</section>
 
 					<section>
@@ -651,7 +670,7 @@
 						<li>Any webflux variant
 							<ul>
 							<li>Great gains in readability and concurrency through use of coroutines</li>
-							<li>Still issues with spring secuirty and many web-mvc based libs</li>
+							<li>Still issues with spring security and many web-mvc based libs</li>
 							</ul>
 						</li>
 						</ul>
