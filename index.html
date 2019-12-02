@@ -782,10 +782,35 @@
 								Jarle
 						</aside>
 					</section>
-					
+
 					<section>
-						<h2>Using kotlin for DSL</h2>
-					</section>
+							<h2>Internal vs external DSL</h2>
+							<table>
+								<tr>
+								<th>External</th>
+								<th>Internal</th>
+								</tr>
+								<tr>
+								<td>Develop a parser that interprets the language</td>
+								<td>NA</td>
+								</tr>
+								<tr>
+								<td>Create an editor for the language</td>
+								<td>NA (one IDEA to rule them all)</td>
+								</tr>
+								<tr>
+								<td>Have to create our own tools</td>
+								<td>Can use existing tools</td>
+								</tr>
+							</table>
+	
+							<aside class="notes">
+								Jarle
+								- Describe internal and external dsl
+								- Internal DSL: a particular form of API in the host general purpose language, fluent interface
+								- External DSL: is parsed independently of the host general purpose language
+							</aside>
+						</section>
 
 					<section>
 						<ul>
@@ -902,48 +927,13 @@
 						</ul>
 						<aside class="notes">
 							Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>What are rules?</h2>
-						<ul>
-						<li>If there is a deviation</li>
-						<li>Size of the deviation</li>
-						<li>Strategies to handle the cases and self service</li>
-						<li>The fields in the tax report that are involved in the rule</li>
-						</ul>
-						<aside class="notes">
-							Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>Internal vs external DSL</h2>
-						<table>
-							<tr>
-							<th>External</th>
-							<th>Internal</th>
-							</tr>
-							<tr>
-							<td>Develop a parser that interprets the language</td>
-							<td>NA</td>
-							</tr>
-							<tr>
-							<td>Create an editor for the language</td>
-							<td>NA (one IDEA to rule them all)</td>
-							</tr>
-							<tr>
-							<td>Have to create our own tools</td>
-							<td>Can use existing tools</td>
-							</tr>
-						</table>
-
-						<aside class="notes">
-							Anders
-							- Describe internal and external dsl
-							- Internal DSL: a particular form of API in the host general purpose language, fluent interface
-							- External DSL: is parsed independently of the host general purpose language
+							What are rules?
+							<ul>
+									<li>If there is a deviation</li>
+									<li>Size of the deviation</li>
+									<li>Strategies to handle the cases and self service</li>
+									<li>The fields in the tax report that are involved in the rule</li>
+									</ul>
 						</aside>
 					</section>
 
