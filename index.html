@@ -771,11 +771,11 @@
            <pre><code class="kotlin" data-trim contenteditable style="font-size: 16px;">
              swaggerSources {
                petstore {
-                 inputFile = 'src/main/resources/swagger/storyteller_segments_openapi.json'
+                 inputFile = file('src/main/resources/swagger/storyteller_segments_openapi.json')
 
                  code {
                    language = 'kotlin-spring'
-                   configFile = 'src/main/resources/swagger/config_segments.json'
+                   configFile = file('src/main/resources/swagger/config_segments.json')
                  }
                }
              }
