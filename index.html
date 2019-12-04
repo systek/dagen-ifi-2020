@@ -88,7 +88,7 @@
 						<ul>
 							<li>NTAs experience using Kotlin</li>
 							<li>Brief intro to use cases</li>
-							<li>Many different subjects Kotlin-related subjects</li>
+							<li>Many different Kotlin-related subjects</li>
 							<li>Contact us after talk for more details</li>
 						</ul>
 					</section>
@@ -297,7 +297,7 @@
 							<li>Deploys so far this year: 139 659 (September)</li>
 						</ul>
 						<aside class="notes">
-							Jarle
+							Anders
 						</aside>
 					</section>
 
@@ -411,17 +411,17 @@
 						<p>Kotlin</p>
 						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
 						@Value("\${test.prop}")
-						val someString: String? = null
+						val someString: String? = null // creates nullability issues
 									</code></pre>
 
 						<p>Kotlin - Alternative</p>
 						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
 						@Value("\${test.prop}")
-						lateinit var someString: String // creates nullability issues
+						lateinit var someString: String
 
 						@Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
 						lateinit var port: Integer
-						// injected with @ConfigurationProperties - cannot ? a primitive
+						// injected with @ConfigurationProperties - cannot inject a primitive
 									</code></pre>
 						<aside class="notes">
 						Anders
