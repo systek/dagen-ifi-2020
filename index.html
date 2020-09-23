@@ -451,22 +451,44 @@
 				<!--Kodeeksempler -->
 				<section>
 					<h2>Kotlin language features</h2>
-					<ul>
-						<li>Dataclasses, named and default arguments</li>
-						<li>Collection api</li>
-						<li>Extension functions</li>
-						<li>NULL safety operator</li>
-						<li>when, case on speed</li>
-						<li>Reified types</li>
-						<li>Useful constructs</li> <!-- runCatching -->
-						<li>coroutines</li> <!-- Peke på kotlinconf presentasjon -->
-					</ul>
 					<aside class="notes">
 						Jarle
 						Nothing new, but it is worth mentioning
 						All of these points provides developer satisfaction
 					</aside>
 				</section>
+				<section>
+					<h3>Dataclasses, named and default arguments</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+data class SomeClass(
+    val someValue: String = "two"
+)
+
+val obj = SomeClass("one")    		// one
+val obk = SomeClass(someValue = "one")  // one
+val obl = SomeClass()                   // two
+					</code></pre>
+					<aside class="notes">
+						Jarle
+						Nothing new, but it is worth mentioning
+						All of these points provides developer satisfaction
+					</aside>
+				</section>
+<!--						<li>Collection api</li>-->
+<!--						<li>Extension functions</li>-->
+<!--						<li>NULL safety operator</li>-->
+<!--						<li>when, case on speed</li>-->
+<!--						<li>Reified types</li>-->
+<!--						<li>Useful constructs</li> &lt;!&ndash; runCatching &ndash;&gt;-->
+<!--						<li>coroutines</li> &lt;!&ndash; Peke på kotlinconf presentasjon &ndash;&gt;-->
+<!--					</ul>-->
+<!--					<aside class="notes">-->
+<!--						Jarle-->
+<!--						Nothing new, but it is worth mentioning-->
+<!--						All of these points provides developer satisfaction-->
+<!--					</aside>-->
+<!--				</section>-->
 
 				<section>
 					<h2>Lessons learned</h2>
