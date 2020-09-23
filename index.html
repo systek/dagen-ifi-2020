@@ -323,7 +323,52 @@
 				</section>
 			</section>
 
-			<!-- GOBO graphql -->
+			<section>
+				<section>
+					<h2>Gobo</h2>
+
+					<img src="images/fraggle-gobo.jpg" height="200" width="200">
+
+					<p>GraphQL gateway</p>
+
+					<aside class="notes">
+						Anders
+					</aside>
+				</section>
+
+				<section>
+					<h2>GraphQL</h2>
+					<ul>
+						<li>Query language for your API</li>
+						<li>Benytter graphql-kotlin</li>
+					</ul>
+				</section>
+
+				<section>
+					<iframe data-src="https://graphql.org/" data-preload width="80%" height="210px" scrolling="no"></iframe>
+				</section>
+
+				<section>
+					<h2>graphql-kotlin</h2>
+					<p>Kotlin kode genererer GraphQL skjemaet</p>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+	@Component
+	class AffiliationQuery(val affiliationService: AffiliationService) : Query {
+		suspend fun getAffiliations() = affiliationService.getAffiliations()
+	}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>graphql-kotlin</h2>
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+						type Query {
+							affiliations: [Affiliation!]!
+						}
+					</code></pre>
+				</section>
+			</section>
 
 			<section>
 				<section>
