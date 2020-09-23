@@ -1,50 +1,212 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
-		<link rel="stylesheet" href="css/custom.css">
+	<title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
+	<link rel="stylesheet" href="css/custom.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section data-background="images/dagen.svg" data-background-size="22%" data-background-position="bottom 4% left 4%" data-background-color="white">
-					<h2 style="color: black; text-transform: none;">Kotlin i Skatteetaten</h2>
-					<h3 style="color: black; text-transform: none;">Erfaringer fra fronten</h3>
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-background="images/dagen.svg" data-background-size="22%"
+				data-background-position="bottom 4% left 4%" data-background-color="white">
+				<h2 style="color: black; text-transform: none;">Kotlin i Skatteetaten</h2>
+				<h3 style="color: black; text-transform: none;">Erfaringer fra fronten</h3>
+			</section>
+
+			<section>
+				<h2>Agenda</h2>
+				<ul>
+					<li>Hvem er vi?</li>
+					<li>Introduksjon</li>
+					<ul>
+						<li>Aurora Platformen</li>
+					</ul>
+					<li>Storyteller</li>
+					<li>Gobo</li>
+					<li>DSLs</li>
+					<li>Hvorfor Kotlin?</li>
+				</ul>
+
+				<aside class="notes">
+					Jarle
+				</aside>
+			</section>
+
+			<section>
+				<section>
+					<h2>Hvem er vi?</h2>
+					<aside class="notes">
+						Jarle
+					</aside>
 				</section>
 
 				<section>
-					<h2>Agenda</h2>
 					<ul>
-						<li>Hvem er vi?</li>
-						<li>Introduksjon</li>
+						<li>Jobber for Systek</li>
 						<ul>
-							<li>Aurora Platformen</li>
-							<li>Hvorfor Kotlin?</li>
+							<li>Konsulentfirma i Oslo</li>
+							<li>70 ansatte (September 2020)</li>
 						</ul>
-						<li>Storyteller</li>
-						<li>Coroutines and WebFlux</li>
-            <li>Kotlin-gradle</li>
-						<li>DSLs</li>
+						<li>Konsulent hos Skatteetaten siden 2018</li>
+						<li>Driver Oslo Kotlin Meetup</li>
 					</ul>
+					<aside class="notes">
+						Jarle
+					</aside>
+				</section>
+
+				<section data-background="images/systek-logo.png" data-background-size="25%"
+					data-background-position="bottom 6% left 6%">
+					<h2>Jarle Hansen</h2>
+					<ul>
+						<li><a href="mailto:jarle.hansen@systek.no">jarle.hansen@systek.no</a></li>
+						<li><a href="https://github.com/jarlehansen">github.com/jarlehansen</a></li>
+					</ul>
+				</section>
+
+				<section data-background="images/systek-logo.png" data-background-size="25%"
+					data-background-position="bottom 6% left 6%">
+					<h2>Anders Mikkelsen</h2>
+					<ul>
+						<li><a href="mailto:anders.mikkelsen@systek.no">anders.mikkelsen@systek.no</a></li>
+						<li><a href="https://github.com/mikand13">github.com/mikand13</a></li>
+					</ul>
+				</section>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h2>Introduksjon</h2>
+					<aside class="notes">
+						Anders
+					</aside>
+				</section>
+
+				<section>
+					<h2>Hva skal vi gå igjennom?</h2>
+					<ul>
+						<li>Skatteetatens erfaring med bruk av Kotlin</li>
+						<li>Noen bruksområder</li>
+						<ul>
+							<li>GraphQL</li>
+							<li>Domain Specific Languages</li>
+						</ul>
+						<li>Kontakt oss gjerne etter presentasjonen</li>
+					</ul>
+					<aside class="notes">
+						Anders
+					</aside>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Skatteetaten</h2>
+					<ul>
+						<li>~6500 ansatte - ~500 utviklere</li>
+						<li>Skatteberegning og innkreving</li>
+						<li>Folkeregisteret</li>
+					</ul>
+
+					<aside class="notes">
+						Jarle
+						NTA is in process of modernizing the systems
+						Moving from "classic" to a cloud solution using openshift
+						New national registry
+					</aside>
+				</section>
+
+				<section>
+					<h2>Brukere</h2>
+					<ul>
+						<li>4.9 millioner i 2018, av totalt 5.3 millioner nordmenn</li>
+						<li>Integrasjoner med de fleste andre offentlige tjenester</li>
+						<li>Integrasjon med firmaer som benytter folkeregisteret</li>
+					</ul>
+					<aside class="notes">
+						Jarle
+					</aside>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Aurora Plattformen</h2>
+
+					<br />
+					<br />
+
+					<p><a href="https://skatteetaten.github.io/aurora"
+							target="_blank">https://skatteetaten.github.io/aurora</a></p>
+					<aside class="notes">
+						Jarle
+						Aurora is the internal cloud platform in the NTA
+					</aside>
+				</section>
+
+				<section>
+					<h2>PaaS</h2>
+
+					<ul>
+						<li>Basert på OpenShift</li>
+						<li>Egen konfigurasjon og verktøy</li>
+						<li>Bygget med Kotlin og kotlin-gradle</li>
+					</ul>
+					<aside class="notes">
+						Jarle
+					</aside>
+				</section>
+
+				<section data-background="images/fraggle-rock.jpg" data-background-size="50%">
+					<aside class="notes">
+						Jarle
+					</aside>
+				</section>
+
+				<section>
+					<h2>PaaS</h2>
+
+					<ul>
+						<li>Tjenestene har navn fra Fragglene</li>
+					</ul>
+
+					<table border="0">
+						<tr>
+							<td><img src="images/fraggle-boober.jpg" /></td>
+							<td><img src="images/fraggle-gobo.jpg" /></td>
+							<td><img src="images/fraggle-meangenie.jpg" /></td>
+							<td><img src="images/fraggle-mokey.jpg" /></td>
+						</tr>
+						<tr>
+							<td>Boober</td>
+							<td>Gobo</td>
+							<td>Mean Genie</td>
+							<td>Mokey</td>
+						</tr>
+					</table>
+
 
 					<aside class="notes">
 						Jarle
@@ -52,895 +214,167 @@
 				</section>
 
 				<section>
-					<section>
-						<h2>Hvem er vi?</h2>
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-
-					<section>
-						<ul>
-							<li>Jobber for Systek</li>
-							<ul>
-								<li>Konsulentfirma i Oslo</li>
-								<li>70 ansatte (20.09.2020)</li>
-							</ul>
-							<li>Konsulent hos Skatteetaten siden 2018</li>
-							<li>Driver Oslo Kotlin Meetup</li>
-						</ul>
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-
-					<section data-background="images/systek-logo.png" data-background-size="25%" data-background-position="bottom 6% left 6%">
-						<h2>Jarle Hansen</h2>
-						<ul>
-							<li><a href="mailto:jarle.hansen@systek.no">jarle.hansen@systek.no</a></li>
-							<li><a href="https://github.com/jarlehansen">github.com/jarlehansen</a></li>
-						</ul>
-					</section>
-
-					<section data-background="images/systek-logo.png" data-background-size="25%" data-background-position="bottom 6% left 6%">
-						<h2>Anders Mikkelsen</h2>
-						<ul>
-							<li><a href="mailto:anders.mikkelsen@systek.no">anders.mikkelsen@systek.no</a></li>
-							<li><a href="https://github.com/mikand13">github.com/mikand13</a></li>
-						</ul>
-					</section>
-					</ul>
+					<h2>Aurora github io</h2>
+					<p><a href="https://skatteetaten.github.io/aurora"
+							target="_blank">https://skatteetaten.github.io/aurora</a></p>
+					<img src="images/aurora-platform.png" width="80%" />
+					<aside class="notes">
+						Jarle
+					</aside>
 				</section>
 
+			</section>
+
+			<section>
 				<section>
-					<section>
-						<h2>Introduksjon</h2>
-						<aside class="notes">
-							Anders
-						</aside>
-					</section>
+					<h2>Storyteller</h2>
 
-					<section>
-						<h2>Hva skal vi gå igjennom?</h2>
-						<ul>
-							<li>Skatteetatens erfaring med bruk av Kotlin</li>
-							<li>Noen bruksområder</li>
-							<ul>
-								<li>GraphQL</li>
-								<li>Domain Specific Languages</li>
-							</ul>
-							<li>Kontakt oss gjerne etter presentasjonen</li>
-						</ul>
-						<aside class="notes">
-							Anders
-						</aside>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Skatteetaten</h2>
-						<ul>
-							<li>~6500 ansatte - ~500 utviklere</li>
-							<li>Skatteberegning og innkreving</li>
-							<li>Folkeregisteret</li>
-						</ul>
-
-						<aside class="notes">
-							Jarle
-							NTA is in process of modernizing the systems
-							Moving from "classic" to a cloud solution using openshift
-							New national registry
-						</aside>
-					</section>
-
-					<section>
-						<h2>Brukere</h2>
-						<ul>
-							<li>4.9 millioner i 2018, av totalt 5.3 nordmenn</li>
-							<li>Integrasjoner med de fleste andre offentlige tjenester</li>
-							<li>Integrasjon med firmaer som benytter folkeregisteret</li>
-						</ul>
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Aurora Plattformen</h2>
-
-						<br />
-						<br />
-
-						<p><a href="https://skatteetaten.github.io/aurora" target="_blank">https://skatteetaten.github.io/aurora</a></p>
-						<aside class="notes">
-							Jarle
-							Aurora is the internal cloud platform in the NTA
-						</aside>
-					</section>
-
-					<section>
-						<h2>PaaS</h2>
-
-						<ul>
-							<li>Basert på OpenShift</li>
-							<li>Egen konfigurasjon og verktøy</li>
-							<li>Bygget med Kotlin og kotlin-gradle</li>
-						</ul>
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-
-					<section data-background="images/fraggle-rock.jpg" data-background-size="50%">
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-
-					<section>
-						<h2>PaaS</h2>
-
-						<ul>
-							<li>Tjenestene har navn fra Fragglene</li>
-						</ul>
-
-						<table border="0">
-							<tr>
-								<td><img src="images/fraggle-boober.jpg" /></td>
-								<td><img src="images/fraggle-gobo.jpg" /></td>
-								<td><img src="images/fraggle-meangenie.jpg" /></td>
-								<td><img src="images/fraggle-mokey.jpg" /></td>
-							</tr>
-							<tr>
-								<td>Boober</td>
-								<td>Gobo</td>
-								<td>Mean Genie</td>
-								<td>Mokey</td>
-							</tr>
-						</table>
-						
-
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-
-					<section>
-						<h2>Aurora github io</h2>
-						<p><a href="https://skatteetaten.github.io/aurora" target="_blank">https://skatteetaten.github.io/aurora</a></p>
-						<img src="images/aurora-platform.png" width="80%" />
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-
-					<section>
-						<h3>Custom config</h3>
-						<img src="images/aurora-config.png" width="70%" />
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-
-					<section>
-						<h3>Custom config</h3>
-						<img src="images/aurora-config2.png" width="70%" />
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-
-					<section>
-						<h2>Open source</h2>
-						<a href="https://github.com/Skatteetaten">https://github.com/Skatteetaten</a>
-						<img src="images/github-skatteetaten.png" width="70%" />
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Why Kotlin?</h2>
-
-						<aside class="notes">
-							Jarle
-							100% compatibility with Java code.
-							Easy to adopt, lots of existing libraries that can be used.
-						</aside>
-					</section>
-
-					<section>
-						<h2>Developer satisfaction</h2>
-						<ul>
-							<li>Dataclasses, named and default arguments</li>
-							<li>Collection api</li>
-							<li>Extension functions</li>
-							<li>NULL safety operator</li>
-							<li>when, case on speed</li>
-							<li>Reified types</li>
-							<li>Coroutines</li>
-						</ul>
-						<aside class="notes">
-							Jarle
-							Nothing new, but it is worth mentioning
-							All of these points provides developer satisfaction
-						</aside>
-					</section>
-
-					<section>
-						<h2>NTA satisfaction</h2>
-						<ul>
-							<li>Testing</li>
-							<li>Scripting</li>
-							<li>DSL</li>
-						</ul>
-						<aside class="notes">
-							Jarle
-							<ul>
-								<li>Keep existing tests</li>
-								<li>Broad support for scripting (build scripts, kotlin script)</li>
-								<li>Many use cases in the NTA favored DSL type solution, well supported in Kotlin as we will look at later</li>
-							</ul>
-						</aside>
-					</section>
-
-					<section>
-							<h2>Lessons learned</h2>
-						<ul>
-							<li>Kotlin creates great developer satisfaction</li>
-							<li>Features such as extension functions and null safety helps us avoid bugs/mistakes by modifying poor API's</li>
-							<li>Certain libraries do not integrate with coroutines, in not so obvious ways</li>
-							<li>Thread.local (used by Spring security, log4j etc.) does not work well with coroutines</li>
-							<li>Kotlin gradle has unpredictable syntax and can be slow</li>
-						</ul>
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Storyteller</h2>
-
-						<aside class="notes">
-							Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>Storyteller</h2>
-
-						<img src="images/Storyteller_Fraggle.png"  height="200" width="200">
-
-						<p>Storyteller is an internal service, that provides automated creation and destruction of environments across the various infrastructures of the NTA</p>
-
-						<aside class="notes">
+					<aside class="notes">
 						Anders
-						</aside>
-					</section>
+					</aside>
+				</section>
 
-					<section>
-						<h2>NTA fun facts</h2>
-						<ul>
-							<li>OpenShift / VMWare</li>
-							<li>~6500 VM's</li>
-							<li>944 pods in production, ~5500 overall</li>
-							<li>Number of pods increase by 50% each year</li>
-							<li>~500 microservices in production for main services</li>
-							<li>Deploys so far this year: 139 659 (September)</li>
-						</ul>
-						<aside class="notes">
-							Anders
-						</aside>
-					</section>
+				<section>
+					<h2>Storyteller</h2>
 
-					<section>
-						<h2>Overview</h2>
+					<img src="images/Storyteller_Fraggle.png" height="200" width="200">
 
-						<ul>
+					<p>Storyteller is an internal service, that provides automated creation and destruction of
+						environments across the various infrastructures of the NTA</p>
+
+					<aside class="notes">
+						Anders
+					</aside>
+				</section>
+
+				<section>
+					<h2>NTA fun facts</h2>
+					<ul>
+						<li>OpenShift / VMWare</li>
+						<li>~6500 VM's</li>
+						<li>944 pods in production, ~5500 overall</li>
+						<li>Number of pods increase by 50% each year</li>
+						<li>~500 microservices in production for main services</li>
+						<li>Deploys so far this year: 139 659 (September)</li>
+					</ul>
+					<aside class="notes">
+						Anders
+					</aside>
+				</section>
+
+				<section>
+					<h2>Overview</h2>
+
+					<ul>
 						<li>An environment is a collection of so-called segments, an organizational unit in the NTA</li>
 						<li>A standard general purpose testing environment usually consists of:
 							<ul>
-							<li>100's of Cores</li>
-							<li>1000's of GB RAM</li>
-							<li>X amounts of Storage</li>
+								<li>100's of Cores</li>
+								<li>1000's of GB RAM</li>
+								<li>X amounts of Storage</li>
 							</ul>
 						</li>
-						<li>On top of the resources run various constellations of legacy and modernized apps in both traditional setups and as pods on OpenShift</li>
-						</ul>
+						<li>On top of the resources run various constellations of legacy and modernized apps in both
+							traditional setups and as pods on OpenShift</li>
+					</ul>
 
-						<aside class="notes">
+					<aside class="notes">
 						Anders
-						</aside>
-					</section>
+					</aside>
+				</section>
 
-					<section>
-						<h2>Architecture</h2>
+				<section>
+					<h2>Architecture</h2>
 
-						<ul>
+					<ul>
 						<li>Microservices</li>
 						<li>Event-Driven</li>
-						</ul>
+					</ul>
 
-						<aside class="notes">
+					<aside class="notes">
 						Anders
-						</aside>
-					</section>
+					</aside>
+				</section>
 
-					<section>
-						<h2>Architecture</h2>
+				<section>
+					<h2>Architecture</h2>
 
-						<img src="images/bonehead_oversikt.png"  height="550" width="450">
+					<img src="images/bonehead_oversikt.png" height="550" width="450">
 
-						<aside class="notes">
+					<aside class="notes">
 						Anders
-						</aside>
-					</section>
+					</aside>
+				</section>
 
-					<section>
-						<h2>Tech</h2>
+				<section>
+					<h2>Tech</h2>
 
-						<ul>
+					<ul>
 						<li>Kotlin</li>
 						<li>Spring-Boot</li>
 						<li>Vert.x</li>
-						<li>Kafka</li>
-						</ul>
+					</ul>
 
-						<aside class="notes">
+					<aside class="notes">
 						Anders
 
 						Will primarily look at Kotlin and Spring-Boot and Kotlin-gradle and how it enables productivity
-						</aside>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Kotlin and Spring-Boot</h2>
-						<aside class="notes">
-						Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>General experience</h2>
-
-						<ul>
-						<li>Most functionality like expected right out the box</li>
-						<li>v2.2.0 solved several issues with coroutines, not all</li>
-						</ul>
-						<aside class="notes">
-						Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>General annoyance</h2>
-
-						<p>Java</p>
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-										@Value("${test.prop}")
-									</code></pre>
-
-						<p>Kotlin</p>
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-										@Value("\${test.prop}")
-									</code></pre>
-						<aside class="notes">
-						Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>General annoyance</h2>
-
-						<p>Java</p>
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-						@Value("${test.prop}")
-						private String someString:
-									</code></pre>
-
-						<p>Kotlin</p>
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-						@Value("\${test.prop}")
-						val someString: String? = null // creates nullability issues
-									</code></pre>
-
-						<p>Kotlin - Alternative</p>
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-						@Value("\${test.prop}")
-						lateinit var someString: String
-
-						@Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
-						lateinit var port: Integer
-						// injected with @ConfigurationProperties - cannot inject a primitive
-									</code></pre>
-						<aside class="notes">
-						Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>General annoyance</h2>
-
-						<p>Java</p>
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-						@Autowired
-						private SomeService someService;
-									</code></pre>
-
-						<p>Java - Constructor</p>
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-						(SomeService someService)
-									</code></pre>
-						<aside class="notes">
-						Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>General annoyance</h2>
-
-						<p>Kotlin</p>
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-						@Autowired
-						private val someService: SomeService? = null // creates nullability issues
-									</code></pre>
-
-						<p>Kotlin - Alternative</p>
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-						@Autowired
-						private lateinit var someService: SomeService
-									</code></pre>
-
-						<p>Kotlin - Constructor</p>
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-						(private val someService: SomeService) // property
-						(someService: SomeService) // argument
-									</code></pre>
-						<aside class="notes">
-						Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>General Annoyance</h2>
-
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-						// Spring fox not enabled for suspended functions
-						// @Configuration
-						// @EnableSwagger2
-						// @Import(BeanValidatorPluginsConfiguration::class)
-									</code></pre>
-						<aside class="notes">
-						Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>Complicated annoyance</h2>
-
-						<ul>
-						<li>@PreAuthorize is often used for authorizing based on granted authorities</li>
-						<li>@EnableGlobalMethodSecurity
-							<ul>
-							<li>Not usable with suspend function (general issue with web-mvc)</li>
-							</ul>
-						</li>
-						<li>@EnableReactiveMethodSecurity
-							<ul>
-							<li>Webflux variant, works with suspend</li>
-							<li>...but demands Mono or Flux response which webflux does not support for suspend function</li>
-							</ul>
-						</ul>
-						<aside class="notes">
-						Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>Complicated annoyance</h2>
-
-						<p>TLDR - Forget @PreAuthorize for suspended flows, for now :)</p>
-						<aside class="notes">
-						Anders
-						</aside>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Coroutines and WebFlux</h2>
-
-						<aside class="notes">
-							Anders
-							Spring webflux (spring boot 2.2) introduced support for coroutines.
-							Show example from Storyteller on how we use coroutines in combination with webflux.
-							What are the benefits of this approach?
-						</aside>
-					</section>
-
-					<section>
-						<h2>What is Webflux?</h2>
-
-						<ul>
-							<li>Reactive programming for spring-boot</li>
-							<li>Data as two primary types of subscribable data</li>
-						</ul>
-						<aside class="notes">
-								Anders
-							</aside>
-					</section>
-
-					<section>
-						<h2>Standard WebFlux</h2>
-
-						<ul>
-							<li>Mono -> Represents a singular item</li>
-							<li>Flux -> Represents a variable sized number of items</li>
-							<li>Accessed through asynchronous subscription</li>
-						</ul>
-
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-							repository.getById("1").subscribe {} // Mono
-							repository.getAll().subscribe {} // Flux (Subscribe on each element)
-							repository.getAll().collectList().subscribe {} // Flux (Mono of all elements)
-						</code></pre>
-						<aside class="notes">
-								Anders
-							</aside>
-					</section>
-
-					<section>
-						<h2>WebFlux - Entrypoint</h2>
-
-						<p>Mono returned from endpoint</p>
-
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 16px;">
-							@GetMapping("{id}", produces = [APPLICATION_JSON])
-							fun show(@PathVariable id: String): Mono&lt;Record&gt; = service.show(id)
-
-							@PostMapping(consumers = [APPLICATION_JSON], produces = [APPLICATION_JSON])
-							fun create(@Valid @RequestBody record: Record): Mono&lt;Record&gt; = service.create(record)
-
-							@GetMapping(produces = [APPLICATION_JSON])
-							fun index(): Flux&lt;Record&gt; = service.index()
-						</code></pre>
-						<aside class="notes">
-								Anders
-							</aside>
-					</section>
-
-					<section>
-						<h3>WebFlux - Entrypoint w. Coroutines</h3>
-
-						<p>Type or Flow returned from endpoint</p>
-
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 16px;">
-							@GetMapping("{id}", produces = [APPLICATION_JSON])
-							suspend fun show(@PathVariable id: String): Record? = service.show(id)
-
-							@PostMapping(consumers = [APPLICATION_JSON], produces = [APPLICATION_JSON])
-							suspend fun create(@Valid @RequestBody record: Record): Record = service.create(record)
-
-							@GetMapping(produces = [APPLICATION_JSON])
-							suspend fun index(): Flow&lt;Record&gt; = service.index()
-						</code></pre>
-						<aside class="notes">
-								Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>WebFlux - Integration</h2>
-
-						<p style="font-size: 30px;">Many libs lack coroutine support, like template with @Repository</p>
-						<p style="font-size: 30px;">Await mono in suspended coroutine, non-blocking</p>
-
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-							fun show(id: String): Record? = repository.show(id).awaitSingleOrNull()
-							fun create(record: Record): Record = repository.create(record).awaitSingle()
-							fun index(id: String): Flow&lt;Record&gt; = repository.index().asFlow()
-						</code></pre>
-						<aside class="notes">
-								Anders
-						</aside>
-					</section>
-
-					<section>
-						<h2>WebFlux - WebClient</h2>
-
-						<p>Reactive client alternative to RestTemplate</p>
-
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-							val post: Mono&lt;Post&gt; = webClient
-								.get()
-								.uri("posts/{id}", id)
-								.retrieve()
-								.bodyToMono()
-						</code></pre>
-
-						<p>Add .block() to retreive body synchronously</p>
-
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-							val post: Post = webClient
-								.get()
-								.uri("posts/{id}", id)
-								.retrieve()
-								.bodyToMono()
-								.block()
-						</code></pre>
-						<aside class="notes">
-								Anders
-							</aside>
-					</section>
-
-					<section>
-						<h3>WebFlux - WebClient w. Coroutines</h3>
-
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-							val post: Post = webClient
-								.get()
-								.uri("posts/{id}", id)
-								.awaitExchange()
-								.awaitBody()
-						</code></pre>
-
-						<p>Benefits of .block() while retaining asynchronicity</p>
-						<aside class="notes">
-								Anders
-						</aside>
-					</section>
-
-					<section>
-						<h3>WebFlux - WebClient w. Coroutines</h3>
-
-						<p>Flow maps directly</p>
-
-						<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-							val post: Flow&lt;Post&gt; = webClient
-								.get()
-								.uri("posts/{id}", id)
-								.awaitExchange()
-								.bodyToFlow()
-						</code></pre>
-						<aside class="notes">
-								Anders
-						</aside>
-					</section>
-
-          <section>
-            <h3>WebFlux - Why Choose?</h3>
-
-            <pre><code class="kotlin" data-trim contenteditable style="font-size: 15px;">
-              val post: Post = webClient
-                .put()
-                .uri { it.path("$BASE_PATH/{id}").build(id) }
-                .bodyValue(encode(envConfig))
-                .exchange()
-                .retryBackoff(5, ofMillis(5000))
-                .awaitFirst()
-                .let {
-                  when {
-                    it.statusCode().is2xxSuccessful -> it.awaitBody()
-                    else -> throw ResponseStatusException(it.statusCode(), it.statusCode().reasonPhrase)
-                  }
-                }
-						</code></pre>
-            <aside class="notes">
-              Anders
-            </aside>
-          </section>
-
-					<section>
-						<h2>Kotlin + Spring-Boot</h2>
-
-						<ul>
-							<li>Generally works well out of the box</li>
-							<li>Large Spring codebase reliant on web-mvc</li>
-								<ul>
-									<li>Think twice before refactor</li>
-								</ul>
-							</li>
-							<li>Any webflux variant</li>
-								<ul>
-								<li>Great gains in readability and concurrency through use of coroutines</li>
-								<li>Still issues with spring security and many web-mvc based libs</li>
-								</ul>
-							</li>
-						</ul>
-						<aside class="notes">
-							Anders
-						</aside>
-					</section>
-				</section>
-
-       <section>
-          <section>
-            <h2>Kotlin-gradle</h2>
-
-			  <aside class="notes">
-				  Jarle
-			  </aside>
-          </section>
-
-         <section>
-           <h2>Kotlin-gradle Cons</h2>
-
-           <ul>
-             <li>Resource intensive - not entirely clear why</li>
-             <li>Unpredictable syntax when using plugins</li>
-           </ul>
-
-           <aside class="notes">
-						 Jarle
-						 We will not go into details in this presentation
-						 Most problems in kotlin-gradle requires details
-           </aside>
-         </section>
-
-         <section>
-           <h2>Kotlin-gradle Syntax</h2>
-
-           <pre><code class="kotlin" data-trim contenteditable style="font-size: 16px;">
-            swaggerSources {
-              create("segments").apply {
-                setInputFile(file("src/main/resources/swagger/storyteller_segments_openapi.json"))
-
-                code(closureOf&lt;GenerateSwaggerCode&gt; {
-                  language = "kotlin-spring"
-                  configFile = file("src/main/resources/swagger/config_segments.json")
-                })
-              }
-            }
-          </code></pre>
-
-			 <aside class="notes">
-				 Jarle
-			 </aside>
-         </section>
-
-         <section>
-           <h2>Gradle Syntax</h2>
-
-           <pre><code class="kotlin" data-trim contenteditable style="font-size: 16px;">
-             swaggerSources {
-               petstore {
-                 inputFile = file('src/main/resources/swagger/storyteller_segments_openapi.json')
-
-                 code {
-                   language = 'kotlin-spring'
-                   configFile = file('src/main/resources/swagger/config_segments.json')
-                 }
-               }
-             }
-						</code></pre>
-
-			 <aside class="notes">
-				 Jarle
-			 </aside>
-         </section>
-
-         <section>
-           <h2>Kotlin-gradle pros</h2>
-
-           <ul>
-             <li>Don't need Groovy, same language as application</li>
-             <li>Code completion, works wonders with buildSrc</li>
-             <li>Incremental building and caching increases build speed</li>
-           </ul>
-
-			 <aside class="notes">
-				 Jarle
-			 </aside>
-         </section>
-        </section>
-
-				<section>
-					<section>
-						<p style="font-size:1.6em;">DSLs IN THE NTA</p>
-						<aside class="notes">
-								Jarle
-								- Describe internal and external dsl
-								- Internal DSL: (depends on host language) a particular form of API in the host general purpose language, fluent interface
-								- External DSL: (is independent of host language) is parsed independently of the host general purpose language
-						</aside>
-					</section>
-
-					<section>
-							<h2>Internal vs external DSL</h2>
-							<table>
-								<tr>
-								<th>External</th>
-								<th>Internal</th>
-								</tr>
-								<tr>
-								<td>Develop a parser that interprets the language</td>
-								<td>NA</td>
-								</tr>
-								<tr>
-								<td>Create an editor for the language</td>
-								<td>NA (one IDEA to rule them all)</td>
-								</tr>
-								<tr>
-								<td>Have to create our own tools</td>
-								<td>Can use existing tools</td>
-								</tr>
-							</table>
-	
-							<aside class="notes">
-								Jarle
-							</aside>
-						</section>
-
-					<section>
-						<ul>
-							<li>Test data generation DSL</li>
-							<li>Tax Process - DSL for calculation</li>
-						</ul>
-
-						<aside class="notes">
-							Jarle
-							- Why was Kotlin used to define the DSL
-							- Demo of playground
-							- Show an example of DSL
-						</aside>
-					</section>
-
-					<section>
-						<h2>Test data generation DSL</h2>
-						<ul>
-							<li>Domain experts can easily produce rich test data</li>
-							<li>Easily accessible for non-technical domain experts</li>
-							</li>
-						</ul>
-						<aside class="notes">
-							Jarle
-							Number of test scenarios is very high, this is the reason why it needs to be easy and fast to create new test cases
-						</aside>
-					</section>
-
-					<section>
-						<h2>Kotlin playground</h2>
-						<ul>
-							<li><a href="https://play.kotlinlang.org/" target="_blank">https://play.kotlinlang.org/</a></li>
-						</ul>
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
-
-					<section>
-						<h2>Kotlin playground</h2>
-						<ul>
-							<li>Created a fork of the kotlin playground repo</li>
-							<li>Made it possible to run within the internal infrastructure</li>
-							<li>Customized the front-end to the NTA requirements</li>
-						</ul>
-						<aside class="notes">
-							Jarle
 					</aside>
-					</section>
+				</section>
+			</section>
 
-					<section>
-						<ul>
-							<li>Created for the browser</li>
-							<li>JS manages the UI</li>
-							<li>Auto complete is provided by the Kotlin server</li>
-						</ul>
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
+			<!-- GOBO graphql -->
 
-					<!-- section data-background="images/playground-spesifikasjon.png">
+			<section>
+				<section>
+					<p style="font-size:1.6em;">DSLs IN THE NTA</p>
+					<aside class="notes">
+						Jarle
+						- Describe internal and external dsl
+						- Internal DSL: (depends on host language) a particular form of API in the host general purpose
+						language, fluent interface
+						- External DSL: (is independent of host language) is parsed independently of the host general
+						purpose language
+					</aside>
+				</section>
+
+				<section>
+					<h2>Test data generation DSL</h2>
+					<ul>
+						<li>Domain experts can easily produce rich test data</li>
+						<li>Easily accessible for non-technical domain experts</li>
+						</li>
+					</ul>
+					<aside class="notes">
+						Jarle
+						Number of test scenarios is very high, this is the reason why it needs to be easy and fast to
+						create new test cases
+					</aside>
+				</section>
+
+				<section>
+					<h2>Kotlin playground</h2>
+					<ul>
+						<li><a href="https://play.kotlinlang.org/" target="_blank">https://play.kotlinlang.org/</a></li>
+					</ul>
+					<aside class="notes">
+						Jarle
+					</aside>
+				</section>
+
+				<section>
+					<h2>Kotlin playground</h2>
+					<ul>
+						<li>Created a fork of the kotlin playground repo</li>
+						<li>Made it possible to run within the internal infrastructure</li>
+						<li>Customized the front-end to the NTA requirements</li>
+					</ul>
+					<aside class="notes">
+						Jarle
+					</aside>
+				</section>
+
+				<!-- section data-background="images/playground-spesifikasjon.png">
 						<aside class="notes">
 								Jarle
 						</aside>
@@ -950,122 +384,99 @@
 						
 					</section -->
 
-					<section data-background-video="videos/playground.mp4">
-						<aside class="notes">
-							Jarle
-						</aside>
-					</section>
+				<section data-background-video="videos/playground.mp4">
+					<aside class="notes">
+						Jarle
+					</aside>
+				</section>
+			</section>
 
-					<section>
-						<h2>Benefits</h2>
-						<ul>
-							<li>Syntactic sugar, creates a natural language in the DSL</li>
-							<li>Easy to integrate into existing legacy Java applications</li>
-							<li>Auto complete and syntax highlighting out-of-the-box with playground</li>
-						</ul>
-						<aside class="notes">
-								Jarle
-						</aside>
-					</section>
+			<section>
+				<h2>Key takeaways</h2>
+				<ul>
+					<li>Kotlin is great for developer satisfaction - minimal adoption resistance</li>
+					<li>Works well with existing libraries, but there are exceptions (such as Threads/coroutines)</li>
+					<li>Migrating existing Java applications is a breeze</li>
+					<li>Kotlin is a great tool for DSLs and can generally be used for the entire ecosystem</li>
+				</ul>
+				<aside class="notes">
+					Anders
+					ASK ABOUT QUESTIONS
+					Kotlin is an official language in the NTA, developers can choose between kotlin and java for new
+					projects
+					Spoiler, they choose kotlin ;)
+					Converting Java applications to Kotlin, an example is an application for database management which
+					has been continuously converted to kotlin feature-by-feature
+				</aside>
+			</section>
 
-					<section>
-						<h2>Drawbacks</h2>
-						<ul>
-							<li>Kotlin-server (playground backend repo) is a large application making it hard to isolate logic and make necessary changes</li>
-							<li>Multiple challenges in adapting for deployment into the internal infrastructure</li>
-						</ul>
-						<aside class="notes">
-								Jarle
-						</aside>
-					</section>
+
+			<section>
+				<section>
+					<h2>Why Kotlin?</h2>
+
+					<aside class="notes">
+						Jarle
+						100% compatibility with Java code.
+						Easy to adopt, lots of existing libraries that can be used.
+					</aside>
+				</section>
+
+
+				<!--Kodeeksempler -->
+				<section>
+					<h2>Kotlin language features</h2>
+					<ul>
+						<li>Dataclasses, named and default arguments</li>
+						<li>Collection api</li>
+						<li>Extension functions</li>
+						<li>NULL safety operator</li>
+						<li>when, case on speed</li>
+						<li>Reified types</li>
+						<li>Useful constructs</li> <!-- runCatching -->
+						<li>coroutines</li> <!-- Peke på kotlinconf presentasjon -->
+					</ul>
+					<aside class="notes">
+						Jarle
+						Nothing new, but it is worth mentioning
+						All of these points provides developer satisfaction
+					</aside>
 				</section>
 
 				<section>
-						<section>
-							<h2>Tax Process</h2>
-							<ul>
-								<li>New tax return process for consumers in progress</li>
-								<li>Rules based tax process</li>
-								<li>Make it easy to do the right thing</li>
-							</ul>
-							<aside class="notes">
-								Anders
-							</aside>
-							</section>
-
-					<section>
-						<h2>Tax Process</h2>
-						<ul>
-							<li>Domain experts are shown examples of rules currently implemented</li>
-							<li>This overview provides details so the domain experts can understand the DSL</li>
-							<li>Domain experts are non-technical, and are able to create and test new rules</li>
-							<li>This learning process must be effective, because there are around 500-1000 rules in total</li>
-						</ul>
-						<aside class="notes">
-							Anders
-							What are rules?
-							<ul>
-									<li>If there is a deviation</li>
-									<li>Size of the deviation</li>
-									<li>Strategies to handle the cases and self service</li>
-									<li>The fields in the tax report that are involved in the rule</li>
-									</ul>
-						</aside>
-					</section>
-
-					<section>
-						<img src="images/tax-process-screenshot.png" />
-
-						<aside class="notes">
-							Anders
-						</aside>
-					</section>
-
-					<section>
-						<img src="images/tax-process-example.png" />
-
-						<aside class="notes">
-							Anders
-						</aside>
-					</section>
+					<h2>Lessons learned</h2>
+					<ul>
+						<li>Kotlin creates great developer satisfaction</li>
+						<li>Features such as extension functions and null safety helps us avoid bugs/mistakes by
+							modifying poor API's</li>
+						<li>Certain libraries do not integrate with coroutines, in not so obvious ways</li>
+						<li>Thread.local (used by Spring security, log4j etc.) does not work well with coroutines</li>
+						<li>Kotlin gradle has unpredictable syntax and can be slow</li>
+					</ul>
+					<aside class="notes">
+						Jarle
+					</aside>
 				</section>
+			</section>
 
-				<section>
-						<h2>Key takeaways</h2>
-						<ul>
-							<li>Kotlin is great for developer satisfaction - minimal adoption resistance</li>
-							<li>Works well with existing libraries, but there are exceptions (such as Threads/coroutines)</li>
-							<li>Migrating existing Java applications is a breeze</li>
-							<li>Kotlin is a great tool for DSLs and can generally be used for the entire ecosystem</li>
-						</ul>
-						<aside class="notes">
-							Anders
-							ASK ABOUT QUESTIONS
-							Kotlin is an official language in the NTA, developers can choose between kotlin and java for new projects
-							Spoiler, they choose kotlin ;)
-							Converting Java applications to Kotlin, an example is an application for database management which has been continuously converted to kotlin feature-by-feature
-						</aside>
-					</section>
-
-				<section data-background="images/vote-slide.png">
-				</section>
-			</div>
 		</div>
+	</div>
 
-		<script src="js/reveal.js"></script>
+	<script src="js/reveal.js"></script>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-		</script>
-	</body>
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true }
+			]
+		});
+	</script>
+</body>
+
 </html>
