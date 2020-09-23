@@ -458,7 +458,7 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Dataclasses, named and default arguments</h3>
+					<h3>Dataklasser, navngitte og default argumenter</h3>
 
 					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
 data class SomeClass(
@@ -476,6 +476,22 @@ val obl = SomeClass()                   // two
 					</aside>
 				</section>
 <!--						<li>Collection api</li>-->
+
+				<section>
+					<h3>Extension functions</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+fun String.doTheThing(): Boolean = "".isBlank()
+
+val falseV = "lol".doTheThing()
+val truthV = "".doTheThing()
+					</code></pre>
+					<aside class="notes">
+						Jarle
+						Nothing new, but it is worth mentioning
+						All of these points provides developer satisfaction
+					</aside>
+				</section>
 <!--						<li>Extension functions</li>-->
 <!--						<li>NULL safety operator</li>-->
 <!--						<li>when, case on speed</li>-->
