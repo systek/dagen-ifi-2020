@@ -510,19 +510,201 @@ val truthV = "".doTheThing()
 					<aside class="notes">
 					</aside>
 				</section>
+
+				<section>
+					<h3>NULL safety operators</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+fun doSomething(): String? = null
+
+val stringValue = doSomething().doTheThing()
+
+// Compile error - Only safe (?.) or non-null asserted (!!.)
+// calls are allowed on a nullable receiver of type String?
+
+// type er String?
+val optionalStringValue = doSomething()?.doTheThing()
+// type er String, ?: elvis operator gir deg default verdi hvis verdien er null
+val correctStringValue = doSomething()?.doTheThing() ?: "something"
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h3>NULL safety operators</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+fun doSomeOtherThing(value: String) = value
+
+val nullableString: String? = null
+
+val compileError = doSomeOtherThing(nullableString)
+
+// Type mismatch
+//   Required:
+//   String
+//   Found:
+//   String?
+
+val letStringValue = nullableString?.let { doSomeOtherThing(it) }
+
+// let utfører operasjon på nullable hvis non-null, type er String?
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h3>when, case on speed</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+val booleanValue = false
+val testValue = "test"
+val objectValue = SomeClass()
+
+val whenResult = when {
+    booleanValue -> "result"
+    !booleanValue -> {
+        doSomething()
+        doSomeOtherThing("result")
+    }
+    testValue == "test" ||
+    objectValue is SomeClass -> doSomeOtherThing(objectValue.someValue)
+    else -> throw IllegalArgumentException("else required when non-exhaustive")
+}
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h3>when, case on speed</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+enum class Demo {
+    ONE, TWO
+}
+
+val demoValue = ONE
+
+val result: Any = when (demoValue) {
+    ONE -> demoValue.name
+    TWO -> demoValue.ordinal
+}
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h3>when, case on speed</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+sealed class SealedClass
+data class SomeSealedClass(private val value: String): SealedClass()
+data class OtherSealedClass(private val value: String): SealedClass()
+
+val objectOfClass: SealedClass = SomeSealedClass("value")
+
+val resultOfInference = when (objectOfClass) {
+    is SomeSealedClass -> SomeSealedClass::class.qualifiedName
+    is OtherSealedClass -> OtherSealedClass::class.qualifiedName
+}
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h3>Reified types</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+fun &lt;T&gt; doTheDecode(json: String, klazz: Class&lt;T&gt;): T =
+    Json.decodeValue(json, klazz)
+
+inline fun &lt;reified T&gt; doTheDecodeReified(json: String): T =
+    Json.decodeValue(json, T::class.java)
+
+fun getTheSealedClass(): SomeSealedClass =
+    doTheDecode("someJson", SomeSealedClass::class.java)
+fun getTheSealedClassReified(): SomeSealedClass =
+    doTheDecodeReified("someJson")
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h3>Reified types</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+fun &lt;T&gt; doTheDecode(json: String, klazz: Class&lt;T&gt;): T =
+    Json.decodeValue(json, klazz)
+
+inline fun &lt;reified T&gt; doTheDecodeReified(json: String): T =
+    Json.decodeValue(json, T::class.java)
+
+fun getTheSealedClass(): SomeSealedClass =
+    doTheDecode("someJson", SomeSealedClass::class.java)
+fun getTheSealedClassReified(): SomeSealedClass =
+    doTheDecodeReified("someJson")
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h3>Nyttige constructs</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+fun getTheSealedClassFun(): SomeSealedClass = runCatching {
+    getTheSealedClassReified()
+}.recoverCatching {
+    // return alternate if failed
+    SomeSealedClass("decode failed")
+}.getOrThrow()
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h3>Nyttige constructs</h3>
+
+					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
+fun getTheSealedClassFunUnit() {
+    runCatching {
+        getTheSealedClassReified()
+    }.recoverCatching {
+        // return alternate if failed
+        SomeSealedClass("decode failed")
+    }.onSuccess {
+        // Perform operation with result
+    }.onFailure {
+        // Perform operation with failed result
+    }
+}
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
 			</section>
+
 			<section>
-				<h2>Hva har vi lært?</h2>
-				<ul>
-					<li>Kotlin er veldig godt tatt i mot fra utviklerne</li>
-					<li>Funksjonalitet som <i>extension functions</i> og <i>null safety</i> hjelper oss unngå
-						bugs/feil ved å tilpasse eksisterende API</li>
-					<li>Noen biblioteker fungerer ikke med coroutines, noe som ikke alltid er opplagt</li>
-					<li>Thread.local (used by Spring security, log4j osv) fungerer ikke bra med coroutines</li>
-				</ul>
-				<aside class="notes">
-					Jarle
-				</aside>
+				<section>
+					<h2>Hva har vi lært?</h2>
+					<ul>
+						<li>Kotlin er veldig godt tatt i mot fra utviklerne</li>
+						<li>Funksjonalitet som <i>extension functions</i> og <i>null safety</i> hjelper oss unngå
+							bugs/feil ved å tilpasse eksisterende API</li>
+						<li>Noen biblioteker fungerer ikke med coroutines, noe som ikke alltid er opplagt</li>
+						<li>Thread.local (used by Spring security, log4j osv) fungerer ikke bra med coroutines</li>
+					</ul>
+					<aside class="notes">
+						Jarle
+					</aside>
+				</section>
 			</section>
 
 		</div>
