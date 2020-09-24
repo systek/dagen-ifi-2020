@@ -659,26 +659,6 @@ fun getTheSealedClassReified(): SomeSealedClass =
 				</section>
 
 				<section>
-					<h3>Reified types</h3>
-
-					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
-fun &lt;T&gt; doTheDecode(json: String, klazz: Class&lt;T&gt;): T =
-    Json.decodeValue(json, klazz)
-
-inline fun &lt;reified T&gt; doTheDecodeReified(json: String): T =
-    Json.decodeValue(json, T::class.java)
-
-fun getTheSealedClass(): SomeSealedClass =
-    doTheDecode("someJson", SomeSealedClass::class.java)
-fun getTheSealedClassReified(): SomeSealedClass =
-    doTheDecodeReified("someJson")
-					</code></pre>
-					<aside class="notes">
-						Anders
-					</aside>
-				</section>
-
-				<section>
 					<h3>Nyttige constructs</h3>
 
 					<pre><code class="kotlin" data-trim contenteditable style="font-size: 18px;">
