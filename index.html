@@ -44,12 +44,12 @@
 					</ul>
 					<li>Storyteller</li>
 					<li>Gobo</li>
-					<li>DSLs</li>
+					<li>DSL</li>
 					<li>Hvorfor Kotlin?</li>
+					<li>Language features</li>
 				</ul>
 
 				<aside class="notes">
-					Jarle
 				</aside>
 			</section>
 
@@ -57,7 +57,6 @@
 				<section>
 					<h2>Hvem er vi?</h2>
 					<aside class="notes">
-						Jarle
 					</aside>
 				</section>
 
@@ -69,10 +68,9 @@
 							<li>70 ansatte (September 2020)</li>
 						</ul>
 						<li>Konsulent hos Skatteetaten siden 2018</li>
-						<li>Driver Oslo Kotlin Meetup</li>
+						<li>Organiserer Oslo Kotlin Meetup</li>
 					</ul>
 					<aside class="notes">
-						Jarle
 					</aside>
 				</section>
 
@@ -100,7 +98,6 @@
 				<section>
 					<h2>Introduksjon</h2>
 					<aside class="notes">
-						Anders
 					</aside>
 				</section>
 
@@ -116,7 +113,6 @@
 						<li>Kontakt oss gjerne etter presentasjonen</li>
 					</ul>
 					<aside class="notes">
-						Anders
 					</aside>
 				</section>
 			</section>
@@ -141,7 +137,7 @@
 				<section>
 					<h2>Brukere</h2>
 					<ul>
-						<li>4.9 millioner i 2018, av totalt 5.3 millioner nordmenn</li>
+						<li>4.9 millioner i 2018, av totalt 5.3 millioner</li>
 						<li>Integrasjoner med de fleste andre offentlige tjenester</li>
 						<li>Integrasjon med firmaer som benytter folkeregisteret</li>
 					</ul>
@@ -161,8 +157,7 @@
 					<p><a href="https://skatteetaten.github.io/aurora"
 							target="_blank">https://skatteetaten.github.io/aurora</a></p>
 					<aside class="notes">
-						Jarle
-						Aurora is the internal cloud platform in the NTA
+						Aurora er den interne skyplattformen til Skatteetaten
 					</aside>
 				</section>
 
@@ -175,13 +170,11 @@
 						<li>Bygget med Kotlin og kotlin-gradle</li>
 					</ul>
 					<aside class="notes">
-						Jarle
 					</aside>
 				</section>
 
 				<section data-background="images/fraggle-rock.jpg" data-background-size="50%">
 					<aside class="notes">
-						Jarle
 					</aside>
 				</section>
 
@@ -201,7 +194,6 @@
 
 
 					<aside class="notes">
-						Jarle
 					</aside>
 				</section>
 
@@ -211,7 +203,6 @@
 							target="_blank">https://skatteetaten.github.io/aurora</a></p>
 					<img src="images/aurora-platform.png" width="80%" />
 					<aside class="notes">
-						Jarle
 					</aside>
 				</section>
 
@@ -323,7 +314,7 @@
 					<p>GraphQL gateway</p>
 
 					<aside class="notes">
-						Anders
+						Jarle
 					</aside>
 				</section>
 
@@ -333,10 +324,18 @@
 						<li>Query language for your API</li>
 						<li>Benytter graphql-kotlin</li>
 					</ul>
+
+					<aside class="notes">
+						Jarle
+					</aside>
 				</section>
 
 				<section>
 					<iframe data-src="https://graphql.org/" data-preload width="350px" height="560px" scrolling="no"></iframe>
+
+					<aside class="notes">
+						Jarle
+					</aside>
 				</section>
 
 				<section>
@@ -349,6 +348,10 @@
 		suspend fun getAffiliations() = affiliationService.getAffiliations()
 	}
 					</code></pre>
+
+					<aside class="notes">
+						Jarle
+					</aside>
 				</section>
 
 				<section>
@@ -358,6 +361,10 @@
 							affiliations: [Affiliation!]!
 						}
 					</code></pre>
+
+					<aside class="notes">
+						Jarle
+					</aside>
 				</section>
 			</section>
 
@@ -417,12 +424,12 @@
 			</section>
 
 			<section>
-				<h2>Key takeaways</h2>
+				<h2>Hvorfor kotlin?</h2>
 				<ul>
-					<li>Kotlin is great for developer satisfaction - minimal adoption resistance</li>
-					<li>Works well with existing libraries, but there are exceptions (such as Threads/coroutines)</li>
-					<li>Migrating existing Java applications is a breeze</li>
-					<li>Kotlin is a great tool for DSLs and can generally be used for the entire ecosystem</li>
+					<li>Kotlin er foretrukket av mange utviklere</li>
+					<li>Fungerer med eksisterende biblioteker, selv om det er unntak (feks Threads/coroutines)</li>
+					<li>Migrering av Java applikasjoner er enkelt</li>
+					<li>Kotlin er et godt verktøy for DSLer</li>
 				</ul>
 				<aside class="notes">
 					Anders
@@ -437,24 +444,10 @@
 
 
 			<section>
-				<section>
-					<h2>Why Kotlin?</h2>
-
-					<aside class="notes">
-						Jarle
-						100% compatibility with Java code.
-						Easy to adopt, lots of existing libraries that can be used.
-					</aside>
-				</section>
-
-
 				<!--Kodeeksempler -->
 				<section>
 					<h2>Kotlin language features</h2>
 					<aside class="notes">
-						Jarle
-						Nothing new, but it is worth mentioning
-						All of these points provides developer satisfaction
 					</aside>
 				</section>
 				<section>
@@ -470,9 +463,6 @@ val obk = SomeClass(someValue = "one")  // one
 val obl = SomeClass()                   // two
 					</code></pre>
 					<aside class="notes">
-						Jarle
-						Nothing new, but it is worth mentioning
-						All of these points provides developer satisfaction
 					</aside>
 				</section>
 <!--						<li>Collection api</li>-->
@@ -487,9 +477,6 @@ val falseV = "lol".doTheThing()
 val truthV = "".doTheThing()
 					</code></pre>
 					<aside class="notes">
-						Jarle
-						Nothing new, but it is worth mentioning
-						All of these points provides developer satisfaction
 					</aside>
 				</section>
 <!--						<li>Extension functions</li>-->
